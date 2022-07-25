@@ -142,7 +142,7 @@ export default {
     </div>
     </div>
     <div>
-      <button v-if="this.timerCount == null" class="btn btncss btn-lg active textsize" @click="timerCount=15">START</button>
+      <button v-if="this.timerCount == null" class="btn btncss btn-lg active textsize" @click="timerCount=20">START</button>
     </div>
 
 </section>

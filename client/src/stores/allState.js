@@ -2,7 +2,8 @@ import { defineStore } from "pinia";
 import axios from "axios";
 import Swal from "sweetalert2";
 
-const baseUrl = `http://localhost:3000`;
+// const baseUrl = `http://localhost:3000`;
+const baseUrl = `https://pocketmon-hacktiv8.herokuapp.com`;
 export const useAllState = defineStore({
   id: "allState",
   state: () => ({
@@ -27,6 +28,11 @@ export const useAllState = defineStore({
     },
     toMain() {
       this.router.push({ name: "WelcomePage" });
+      if (localStorage.getItem("access_token")) {
+        this.page = "main";
+      } else {
+        this.page = "home";
+      }
     },
     toPokedex() {
       this.router.push({ name: "HomeView" });
@@ -123,7 +129,7 @@ export const useAllState = defineStore({
           phoneNumber: objRegister.phoneNumber,
         });
         // console.log(objRegister);
-        this.page = "main";
+        this.page = "home";
         this.username = "";
         this.email = "";
         this.password = "";
@@ -147,7 +153,7 @@ export const useAllState = defineStore({
           headers: { access_token: localStorage.getItem("access_token") },
           params: { url },
         });
-        console.log(data);
+        // console.log(data);
         if (localStorage.getItem("access_token")) {
           this.page = "main";
         } else {
@@ -197,9 +203,15 @@ export const useAllState = defineStore({
           }
         );
         // console.log(data);
-        this.page = "main";
+        if (localStorage.getItem("access_token")) {
+          this.page = "main";
+        } else {
+          this.page = "home";
+        }
+        if (data) {
+          this.getLeaderBoard();
+        }
         this.router.push({ name: "LeaderBoard" });
-        this.getLeaderBoard();
       } catch (error) {
         console.log(error);
       }
@@ -212,6 +224,11 @@ export const useAllState = defineStore({
             Authorization: `Bearer ${localStorage.getItem("tokenStat")}`,
           },
         });
+        if (localStorage.getItem("access_token")) {
+          this.page = "main";
+        } else {
+          this.page = "home";
+        }
         // console.log(data.data);
         this.leaderboards = data.data;
         // console.log(data);
@@ -226,6 +243,11 @@ export const useAllState = defineStore({
           headers: { access_token: localStorage.getItem("access_token") },
         });
         // console.log(data);
+        if (localStorage.getItem("access_token")) {
+          this.page = "main";
+        } else {
+          this.page = "home";
+        }
         this.page = "main";
         this.pockets = data;
       } catch (error) {

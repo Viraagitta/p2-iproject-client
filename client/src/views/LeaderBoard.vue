@@ -24,20 +24,22 @@ import LeaderBoardTable from '../components/LeaderBoardTable.vue'
 </script>
 
 <template>
-<h3>LEADERBOARD TOP 10</h3>
-<table class="table table-hover">
-<thead>
-    <tr>
-      <th></th>
-      <th>Name</th>
-      <th>Rank</th>
-      <th>Score</th>
-    </tr>
-</thead>
-<tbody>
+<div style="height:calc(100vh - 148px);background: #d0e29e;">
+  <h3>LEADERBOARD TOP 10</h3>
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th></th>
+        <th>Name</th>
+        <th>Rank</th>
+        <th>Score</th>
+      </tr>
+  </thead>
+  <tbody>
     <LeaderBoardTable v-for="(leaderboard, index) in leaderboards" :key="index+1" :leaderboard="leaderboard"/>
-</tbody>
+  </tbody>
 </table>
+</div>
 </template>
 
 <style scoped>

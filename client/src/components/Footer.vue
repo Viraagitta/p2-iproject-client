@@ -4,7 +4,7 @@ export default {
 };
 </script>
 <template>
-  <footer class="mt-auto">
+  <footer class="mt-auto sticky-bottom">
     <div>
       <img
         src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSW2S-uOxnT9_3X1lGteoQDcbueJfD1dQerCvYT4sgStrOIMKJFoLZtlSowLOat9KfkF0o&usqp=CAU"

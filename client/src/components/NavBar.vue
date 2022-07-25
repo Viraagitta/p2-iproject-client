@@ -1,11 +1,13 @@
 <script>
-import { mapActions } from 'pinia'
+import { mapActions, mapState } from 'pinia'
 import { useAllState } from '../stores/allState'
   export default {
     name: 'NavBar',
-
+      computed:{
+    ...mapState(useAllState, ['page'])
+  },
         methods: {
-      ...mapActions(useAllState, ['toMain', 'toDetail','toPocket', 'toPlay','toPokedex', 'toLeaderBoard','toLogout']),
+      ...mapActions(useAllState, ['toMain', 'toDetail','toPocket', 'toPlay','toPokedex', 'toLeaderBoard','toLogout', 'toLogin', 'toRegister']),
     }
 }
 </script>
@@ -13,17 +15,33 @@ import { useAllState } from '../stores/allState'
 <template>
   <section>
     <div class="navi">
+      <div style="position: absolute">
+        <h1>POCKETMON</h1>
+      </div>
+      <div v-if="page === 'home'">
+        <span><a href="" @click.prevent="toMain">About Us</a></span>
+        <span><a href="" @click.prevent="toLogin">Sign In</a></span>
+        <span><a href="" @click.prevent="toRegister">Sign Up</a></span>
+      </div>
+      <div v-if="page === 'main'">
       <span><a href="" @click.prevent="toMain">About Us</a></span>
       <span><a href="" @click.prevent="toPlay">Play POCKETMON</a></span>
       <span><a href="" @click.prevent="toPokedex">Pokédex</a></span>
       <span><a href="" @click.prevent="toPocket">My Pocket</a></span>
       <span><a href="" @click.prevent="toLeaderBoard">Leaderboard</a></span>
       <span><a href="" @click.prevent="toLogout">Logout</a></span>
+      </div>
     </div>
   </section>
 </template>
 
 <style scoped>
+img {
+  margin: 5px;
+  width: 44px;
+  border: 3px solid white  ;
+  border-radius: 50%;
+}
 a {
   text-decoration: none;
   padding: 10px;
@@ -84,5 +102,14 @@ h3{
   background: #3fc0ab;
   width: 100%;
   padding: 40px 0;
+}
+
+.row{
+  display: flex
+  
+}
+
+h1{
+  color: white;
 }
 </style>

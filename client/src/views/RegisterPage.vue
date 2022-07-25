@@ -26,7 +26,7 @@ import { useAllState } from '../stores/allState'
 }
 </script>
 <template>
-  <section class="vh-100">
+  <section>
     <div id="login">
       <div class="register-container">
         <div class="form-container">
